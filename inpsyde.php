@@ -1,20 +1,35 @@
 <?php
-  /*
-    Plugin Name: Inpsyde Exam
-    Description: Ways to test skills for qualification
-    Author: Monico Colete
-    Version: 0.1
-    
-    
+/**
+ * Plugin Name: Inpsyde Exam
+ * Description: Ways to test skills for qualification
+ * Author: Monico Colete
+ * Version: 0.1
+ */
 
-  */
-
+require_once __DIR__ . "/router.php";
 
 
+/**
+ * Currently router detector
+ */
+class Main
+{
+
+    public function detectEndpointForRouting() 
+    {
+        $request = $_SERVER['REQUEST_URI'];
+        if ($request == "/users") {
+            include __DIR__ . '/users.php';
+        }
+    }
+}
+
+$main = new Main();
+$main->detectEndpointForRouting();
 
 /** 
  * TODO:
- * - Create custom Endpoint(Not a REST), so it's a SOAP
+ * - Create custom Endpoint(Not a REST), it is a simple routing...
  * - Call to REST endpoint to https://jsonplaceholder.typicode.com/users
  * - Parse JSON, build table
  * - Row contains id, name, username, arranged chronologically
@@ -34,3 +49,4 @@
  * - Other tests (Optional)
  * - Explain installed packages in README
  **/
+?>
