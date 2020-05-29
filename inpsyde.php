@@ -25,32 +25,49 @@
 class Main
 {
 
-    /**
-     * Detects the /users endpoint to reroute to intended php file
-     * 
-     * @return null
-     */
-    public function detectEndpointForRouting() 
+    public function init()
+    {
+        add_filter( 'template_include', array( $this, 'include_template' ) );
+        add_filter( 'init', array( $this, 'rewrite_rules' ) );
+        $this->addUsersScript();
+    }
+
+    public function include_template( $template )
     {
         $request = $_SERVER['REQUEST_URI'];
         if ($request == "/users") {
-            include __DIR__ . '/src/users.php';
+            return __DIR__ . '/src/users.php';
         }
+    }
+
+    public function flush_rules()
+    {
+        $this->rewrite_rules();
+        flush_rewrite_rules();
+    }
+
+    public function rewrite_rules()
+    {
+        add_rewrite_rule( 'account/(.+?)/?$', 'index.php?account_page=$matches[1]', 'top');
+        add_rewrite_tag( '%account_page%', '([^&]+)' );
     }
 
     public function addUsersScript() {
         add_action('wp_enqueue_scripts', function() {
             wp_enqueue_script('users.js', 
               plugins_url('/js/users.js', __FILE__), array('jquery'),
-              WP_VERSION, false);
+              0.1, false);
         });
+        error_log("Add User Data");
         // Check if the Javascript is loaded?
     }
 }
 
-$main = new Main();
-$main->detectEndpointForRouting();
-$main->addUsersScript();
+
+add_action('plugins_loaded', array(new Main, 'init'));
+
+// One time activation functions
+register_activation_hook(plugins_url('inpsyde.php'), array(new Main, 'flush_rules'));
 
 
 /** 
