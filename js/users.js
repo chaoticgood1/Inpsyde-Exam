@@ -91,7 +91,7 @@
 
         // Validation
         validateId(id) {
-            if (Number.isInteger(id)) {
+            if (!Number.isInteger(id)) {
                 throw "Invalid ID"
             }
         }
