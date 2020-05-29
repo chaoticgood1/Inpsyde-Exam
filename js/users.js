@@ -1,29 +1,44 @@
 (function($) {
     $(document).ready(() => {
         let users = new Users()
-        users.listenToUserIdClicks()
-
+        
         handleIDClick()
         handleNameClick()
         handleUserNameClick()
 
         
         function handleIDClick() {
+            users.listenToUserIdClicks()
             window.addEventListener(Users.ID_CLICKED, async (e) => {
                 let id = e.detail.id
-                if (users.isIdValid(id)) {
-                    let details = await users.getUserDetail(id)
+                try {
+                    users.showLoading()
+                    users.validateId(id)
+                    details = await users.getUserDetailById(id)
+                    users.validateResultById(details)
                     let elementString = users.getElementString(details)
                     users.showDetails(elementString)
-                    return
+                } catch (errMsg) {
+                    users.handleErrorById(errMsg)
                 }
-                // TODO: Handle invalid id
-                console.log("Invalid id")
             })
         }
         
         function handleNameClick() {
-            // TODO: Use functions in handleIDClick()
+            users.listenToNameClicks()
+            window.addEventListener(Users.NAME_CLICKED, async (e) => {
+                let name = e.detail.name
+                try {
+                    users.showLoading()
+                    users.validateName(name)
+                    details = await users.getUserDetail("name", name)
+                    users.validateResultByName(details)
+                    let elementString = users.getElementString(details[0])
+                    users.showDetails(elementString)
+                } catch (errMsg) {
+                    users.handleErrorByName(errMsg)
+                }
+            })
         }
 
         function handleUserNameClick() {
@@ -41,6 +56,70 @@
             })
         }
 
+        listenToNameClicks() {
+            $("#users .user-name").on("click", function(e) {
+                e.preventDefault();
+                let name = $(this).html()
+                console.log("name " + name)
+                dispatch(Users.NAME_CLICKED, {name: name})
+            })
+        }
+
+        // Validation
+        validateId(id) {
+            if (!Number.isInteger(id)) {
+                throw "Invalid ID"
+            }
+        }
+
+
+        validateName(name) {
+            // TODO: Add more validation
+            // - Should have no number
+            // - Special characters?
+        }
+
+        validateResultByName(details) {
+            if (details["message"] != undefined) {
+                throw details["message"]
+            }
+
+            if (Array.isArray(details) && details.length == 1) {
+                return true
+            }
+            return false
+        }
+
+        validateResultById(details) {
+            // TODO: Add more validation
+        }
+
+
+        // Error Handling
+        handleErrorById(errMsg) {
+            // TODO: Handle errors
+            console.log(errMsg)
+            this.showError(errMsg)
+        }
+
+        handleErrorByName(errMsg) {
+            // TODO: Handle errors
+            console.log(errMsg)
+            this.showError(errMsg)
+        }
+
+        showError(msg) {
+            let $details = $("#user-details")
+            $details.empty()
+            $details.append("Error: " + msg)
+        }
+
+        showLoading() {
+            let $details = $("#user-details")
+            $details.empty()
+            $details.append("Loading...")
+        }
+
         showDetails(elementString) {
             let $details = $("#user-details")
             $details.empty()
@@ -48,7 +127,6 @@
         }
 
         getElementString(details) {
-            console.log(details)
             let string = ""
             for (let key in details) {
                 string += `
@@ -59,13 +137,14 @@
             return string
         }
 
-        getUserDetail(id) {
+        getUserDetailById(id) {
             let url = Users.API + "/" + id
             return get(url)
         }
 
-        isIdValid(id) {
-            return Number.isInteger(id)
+        getUserDetail(key, value) {
+            let url = Users.API + `/?${key}=${value}`
+            return get(url)
         }
     }
 
@@ -76,9 +155,11 @@
     function get(url) {
         return fetch(url)
         .then(response => { return response.json() })
-        .catch(() => console.log(`Can’t access ${url} response. Blocked by browser?`))
+        .catch(() => { return {"message": "Unable to fetch data"} })
     }
 
     Users.API = "https://jsonplaceholder.typicode.com/users"
     Users.ID_CLICKED = "ID_CLICKED"
+    Users.NAME_CLICKED = "NAME_CLICKED"
+    Users.USERNAME_CLICKED = "USERNAME_CLICKED"
 })(jQuery);
