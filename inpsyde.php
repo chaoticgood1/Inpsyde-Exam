@@ -13,6 +13,7 @@
  * @link     http://localhost/
  */
 
+require(__DIR__ . "/src/users.php");
 /**
  * Implements Exam
  * 
@@ -30,13 +31,14 @@ class Main
         add_filter( 'template_include', array( $this, 'include_template' ) );
         add_filter( 'init', array( $this, 'rewrite_rules' ) );
         $this->addUsersScript();
+        $this->addAPIForUsername();
     }
 
     public function include_template( $template )
     {
         $request = $_SERVER['REQUEST_URI'];
         if ($request == "/users") {
-            return __DIR__ . '/src/users.php';
+            return __DIR__ . '/src/page/users-page.php';
         }
     }
 
@@ -59,6 +61,17 @@ class Main
               0.1, false);
         });
         // TODO: Check if the Javascript is loaded?
+    }
+
+    public function addAPIForUsername() {
+        error_log(Users::USERS_API);
+        // register_rest_route('events/', '/blog', array(
+        //     'methods' => 'GET',
+        //     'callback' => 'musesquare_events_blog',
+        //     'args' => [
+        //       'url'
+        //     ]
+        // ));
     }
 }
 

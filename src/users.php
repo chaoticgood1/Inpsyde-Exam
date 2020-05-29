@@ -1,38 +1,8 @@
 <?php
-/*
-Template Name: Users
-*/
-/** Create documentation, adhere to code convention */
-?>
-
-
-<?php get_header(); ?>
-<?php $users = new Users(); ?>
-
-<table id="users">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Username</th>
-    </tr>
-    <?php foreach($users->getData() as $user): ?>
-    <tr>
-        <td><a href="/" class="user-id"><?php echo $user->id; ?></a></td>
-        <td><a href="/" class="user-name"><?php echo $user->name; ?></a></td>
-        <td><a href="/" class="user-username"><?php echo $user->username; ?></a></td>
-    </tr>
-    <?php endforeach; ?>
-</table>
-<div>User Details:</div>
-<div id="user-details"></div>
-
-
-<?php
 class Users 
 {
-    const USERS_API = "https://jsonplaceholder.typicode.com/users";
+    public const USERS_API = "https://jsonplaceholder.typicode.com/users";
 
-    /** Try MVC, separate the data from view */
     public function getData() // Rename? Later
     {
         // TODO: Handle error not getting
@@ -54,5 +24,3 @@ class Users
     }
 }
 ?>
-
-<?php get_footer(); ?>
