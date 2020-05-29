@@ -2,14 +2,12 @@
 /*
 Template Name: Users
 */
+/** Create documentation, adhere to code convention */
 ?>
 
 
 <?php get_header(); ?>
-<?php /** Create documentation, adhere to code convention */
-$users = new Users();
-?>
-
+<?php $users = new Users(); ?>
 
 <table id="users">
     <tr>
@@ -25,14 +23,11 @@ $users = new Users();
     </tr>
     <?php endforeach; ?>
 </table>
-<div id="user-details">
-
-</div>
+<div>User Details:</div>
+<div id="user-details"></div>
 
 
 <?php
-
-
 class Users 
 {
     const USERS_API = "https://jsonplaceholder.typicode.com/users";
@@ -40,8 +35,10 @@ class Users
     /** Try MVC, separate the data from view */
     public function getData() // Rename? Later
     {
-        $response = $this->get(Users::USERS_API); // Handle error not getting users
-        // Long loading time
+        // TODO: Handle error not getting
+        // - Long loading time
+        // - Cache result
+        $response = $this->get(Users::USERS_API);
         return json_decode($response);
     }
 

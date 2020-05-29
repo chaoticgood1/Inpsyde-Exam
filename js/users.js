@@ -2,39 +2,61 @@
     $(document).ready(() => {
         let users = new Users()
         users.listenToUserIdClicks()
+
+        handleIDClick()
+        handleNameClick()
+        handleUserNameClick()
+
         
-        window.addEventListener(Users.ID_CLICKED, async (e) => {
-            
-            let id = e.detail.id
-            if (users.isIdValid(id)) {
-                let details = await users.getUserDetail(id)
-                users.showDetails(details)
-                return
-            }
-            // Handle invalid id
-            console.log("Invalid id")
-        })
+        function handleIDClick() {
+            window.addEventListener(Users.ID_CLICKED, async (e) => {
+                let id = e.detail.id
+                if (users.isIdValid(id)) {
+                    let details = await users.getUserDetail(id)
+                    let elementString = users.getElementString(details)
+                    users.showDetails(elementString)
+                    return
+                }
+                // TODO: Handle invalid id
+                console.log("Invalid id")
+            })
+        }
+        
+        function handleNameClick() {
+            // TODO: Use functions in handleIDClick()
+        }
+
+        function handleUserNameClick() {
+            // TODO: Use functions in handleIDClick()
+        }
+        
     })
 
     class Users {
         listenToUserIdClicks() {
             $("#users .user-id").on("click", function(e) {
-                console.log("Test")
                 e.preventDefault();
                 let id = parseInt($(this).html()) // Check for conversion error
                 dispatch(Users.ID_CLICKED, {id: id})
             })
         }
 
-        showDetails(details) {
-            // let $details = $(".user-details")
-            // details.empty()
-            // details.append(`
-            //     <span></span>
-            // `)
+        showDetails(elementString) {
+            let $details = $("#user-details")
+            $details.empty()
+            $details.append(elementString)
+        }
 
-            // $(".user-details").append()
+        getElementString(details) {
             console.log(details)
+            let string = ""
+            for (let key in details) {
+                string += `
+                <span style="display:block">
+                    ${key}: ${JSON.stringify(details[key])}
+                </span>`
+            }
+            return string
         }
 
         getUserDetail(id) {

@@ -58,8 +58,7 @@ class Main
               plugins_url('/js/users.js', __FILE__), array('jquery'),
               0.1, false);
         });
-        error_log("Add User Data");
-        // Check if the Javascript is loaded?
+        // TODO: Check if the Javascript is loaded?
     }
 }
 
