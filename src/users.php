@@ -1,4 +1,5 @@
-<?php
+
+<?php /** Create documentation, adhere to code convention */
 $users = new Users();
 ?>
 <table>
@@ -9,23 +10,30 @@ $users = new Users();
   </tr>
   <?php foreach($users->getData() as $user): ?>
   <tr>
-    <td><?php echo $user->id; ?></td>
-    <td><?php echo $user->name; ?></td>
-    <td><?php echo $user->username; ?></td>
+    <td><a><?php echo $user->id; ?></a></td>
+    <td><a><?php echo $user->name; ?></a></td>
+    <td><a><?php echo $user->username; ?></a></td>
   </tr>
   <?php endforeach; ?>
 </table>
 <?php
+
+// Wrapped by <a>
 
 
 class Users 
 {
   const USERS_API = "https://jsonplaceholder.typicode.com/users";
 
-  public function getData() 
+  /** Try MVC, separate the data from view */
+  public function getData() // Rename? Later
   {
     $response = $this->get(Users::USERS_API);
     return json_decode($response);
+  }
+
+  public function getExtraDetails() {
+    // Get once user clicks on the user
   }
 
   public function get($url, $header = array(), $params = array()) 

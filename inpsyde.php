@@ -13,8 +13,6 @@
  * @link     http://localhost/
  */
 
-require_once __DIR__ . "/router.php";
-
 /**
  * Implements Exam
  * 
@@ -35,14 +33,27 @@ class Main
     public function detectEndpointForRouting() 
     {
         $request = $_SERVER['REQUEST_URI'];
+
+        error_log(__DIR__);
         if ($request == "/users") {
-            include __DIR__ . '/users.php';
+            include __DIR__ . '/src/users.php';
         }
+    }
+
+    public function addUsersScript() {
+        add_action('wp_enqueue_scripts', function() {
+            wp_enqueue_script('users.js', 
+              plugins_url('/js/users.js', __FILE__), array('jquery'),
+              WP_VERSION, false);
+        });
+        // Check if the Javascript is loaded?
     }
 }
 
 $main = new Main();
 $main->detectEndpointForRouting();
+$main->addUsersScript();
+
 
 /** 
  * TODO:
