@@ -2,7 +2,7 @@
 <?php /** Create documentation, adhere to code convention */
 $users = new Users();
 ?>
-<table>
+<table id="users">
   <tr>
     <th>ID</th>
     <th>Name</th>
@@ -10,7 +10,7 @@ $users = new Users();
   </tr>
   <?php foreach($users->getData() as $user): ?>
   <tr>
-    <td><a><?php echo $user->id; ?></a></td>
+    <td><a href="javascript:void(0);"><?php echo $user->id; ?></a></td>
     <td><a><?php echo $user->name; ?></a></td>
     <td><a><?php echo $user->username; ?></a></td>
   </tr>

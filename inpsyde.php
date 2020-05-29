@@ -33,8 +33,6 @@ class Main
     public function detectEndpointForRouting() 
     {
         $request = $_SERVER['REQUEST_URI'];
-
-        error_log(__DIR__);
         if ($request == "/users") {
             include __DIR__ . '/src/users.php';
         }
