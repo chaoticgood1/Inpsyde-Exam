@@ -4,11 +4,12 @@
         
         handleIDClick()
         handleNameClick()
-        handleUserNameClick()
 
         
         function handleIDClick() {
             users.listenToUserIdClicks()
+            users.listenToUsernameClicks()
+
             window.addEventListener(Users.ID_CLICKED, async (e) => {
                 let id = e.detail.id
                 try {
@@ -42,25 +43,6 @@
                 }
             })
         }
-
-        function handleUserNameClick() {
-            users.listenToUsernameClicks()
-            window.addEventListener(Users.USERNAME_CLICKED, async (e) => {
-                let username = e.detail.username
-                try {
-                    users.latestDataBeingProcessed = username
-                    users.showLoading()
-                    users.validateUsername(username)
-                    details = await users.getUserDetail("username", username)
-                    console.log(details)
-                    users.validateResultByUsername(details)
-                    let elementString = users.getElementString(details[0])
-                    users.showDetails(elementString)
-                } catch (err) {
-                    users.handleErrorByName(err)
-                }
-            })
-        }
         
     })
 
@@ -84,8 +66,8 @@
         listenToUsernameClicks() {
             $("#users .user-username").on("click", function(e) {
                 e.preventDefault();
-                let username = $(this).html()
-                dispatch(Users.USERNAME_CLICKED, {username: username})
+                let id = parseInt($(this).attr("id")) // Check for conversion error
+                dispatch(Users.ID_CLICKED, {id: id})
             })
         }
 
@@ -224,5 +206,4 @@
     Users.API = "https://jsonplaceholder.typicode.com/users"
     Users.ID_CLICKED = "ID_CLICKED"
     Users.NAME_CLICKED = "NAME_CLICKED"
-    Users.USERNAME_CLICKED = "USERNAME_CLICKED"
 })(jQuery);

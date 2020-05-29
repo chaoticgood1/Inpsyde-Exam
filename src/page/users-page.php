@@ -19,7 +19,11 @@ Template Name: Users
     <tr>
         <td><a href="/" class="user-id"><?php echo $user->id; ?></a></td>
         <td><a href="/" class="user-name"><?php echo $user->name; ?></a></td>
-        <td><a href="/" class="user-username"><?php echo $user->username; ?></a></td>
+        <td>
+            <a href="/" class="user-username" id="<?php echo $user->id; ?>">
+                <?php echo $user->username; ?>
+            </a>
+        </td>
     </tr>
     <?php endforeach; ?>
 </table>

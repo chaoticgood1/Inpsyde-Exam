@@ -31,7 +31,6 @@ class Main
         add_filter( 'template_include', array( $this, 'include_template' ) );
         add_filter( 'init', array( $this, 'rewrite_rules' ) );
         $this->addUsersScript();
-        $this->addAPIForUsername();
     }
 
     public function include_template( $template )
@@ -62,19 +61,7 @@ class Main
         });
         // TODO: Check if the Javascript is loaded?
     }
-
-    public function addAPIForUsername() {
-        error_log(Users::USERS_API);
-        // register_rest_route('events/', '/blog', array(
-        //     'methods' => 'GET',
-        //     'callback' => 'musesquare_events_blog',
-        //     'args' => [
-        //       'url'
-        //     ]
-        // ));
-    }
 }
-
 
 add_action('plugins_loaded', array(new Main, 'init'));
 
