@@ -4,17 +4,34 @@
  * Description: Ways to test skills for qualification
  * Author: Monico Colete
  * Version: 0.1
+ * PHP Version 7.2
+ * 
+ * @category Plugin_Inpsyde
+ * @package  Plugin_Inpsyde
+ * @author   Monico Colete <colete_nico@yahoo.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://localhost/
  */
 
 require_once __DIR__ . "/router.php";
 
-
 /**
- * Currently router detector
+ * Implements Exam
+ * 
+ * @category Plugin_Main
+ * @package  Plugin_Main
+ * @author   Monico Colete <colete_nico@yahoo.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ * @link     http://localhost/
  */
 class Main
 {
 
+    /**
+     * Detects the /users endpoint to reroute to intended php file
+     * 
+     * @return null
+     */
     public function detectEndpointForRouting() 
     {
         $request = $_SERVER['REQUEST_URI'];
