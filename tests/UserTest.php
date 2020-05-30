@@ -10,6 +10,10 @@ class UserTest extends \PHPUnit\Framework\TestCase
 
     public function testTesting() {
         $users = new Users();
+
+        // TODO 
+        // - Test the getData()
+        // - Break it down to make it testable
         $this->assertEquals("1", "1");
 
     }
