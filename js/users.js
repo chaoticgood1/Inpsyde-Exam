@@ -82,13 +82,13 @@
         }
 
         validateResultByName(details) {
-            if (details['name'] != this.latestDataBeingProcessed)
+            if (details[0]['name'] != this.latestDataBeingProcessed)
                 throw { id: 0, message: ""}
-
+            
             if (details["message"] != undefined) {
                 throw { id: 1, message: details["message"]} 
             }
-
+            
             if (!Array.isArray(details)) {
                 throw { id: 2, message: "Expected Array"} 
             }
@@ -99,6 +99,7 @@
         }
 
         validateResultByUsername(details) {
+            console.log(this.latestDataBeingProcessed)
             if (details['username'] != this.latestDataBeingProcessed)
                 throw { id: 0, message: ""}
 
