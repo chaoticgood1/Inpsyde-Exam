@@ -7,10 +7,8 @@ Template Name: Users
 require(INPSYDE_PATH . 'src/Users.php');
 ?>
 
-
-
 <?php get_header(); ?>
-<?php $users = new Users(); ?>
+<?php $users = Users::newInstance(); ?>
 
 <table id="users">
     <tr>

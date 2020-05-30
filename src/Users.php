@@ -2,46 +2,30 @@
 
 require INPSYDE_PATH . "/vendor/autoload.php";
 
+use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7;
 use Kevinrob\GuzzleCache\CacheMiddleware;
 use Kevinrob\GuzzleCache\Storage\FlysystemStorage;
 use Kevinrob\GuzzleCache\Strategy\PrivateCacheStrategy;
-
 use League\Flysystem\Adapter\Local;
-
-use GuzzleHttp\HandlerStack;
-
-use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\ClientException;
+
 
 class Users 
 {
-    public static $USERS_API = "https://jsonplaceholder.typicode.com/users";
+    public const USERS_API = "https://jsonplaceholder.typicode.com/users";
 
-    private $stack;
-    private $client;
+    protected $client;
 
-    function __construct() {
-        $this->initClientWithCaching();
+    function __construct($client, $url) {
+        $this->client = $client;
+        $this->url = $url;
     }
 
-    private function initClientWithCaching() {
-        $stack = HandlerStack::create();
-        $stack->push(
-        new CacheMiddleware(
-            new PrivateCacheStrategy(
-                new FlysystemStorage(
-                    new Local(INPSYDE_PATH . './tmp/cache/guzzle/')
-                )
-            ), 60
-        ));
-
-        $this->stack = $stack;
-        $this->client = new GuzzleHttp\Client(['handler' => $stack]);
-    }
-
-    public function getData() // Rename? Later
+    public function getData()
     {
-        $data = $this->get(Users::$USERS_API);
+        $data = $this->get($this->url);
         if ($data["statusCode"] == "200") {
             return $data["users"];
         }
@@ -62,6 +46,20 @@ class Users
                 "message" => $e->getMessage()   
             ];
         }
+    }
+
+    public static function newInstance($url = Users::USERS_API) {
+        $stack = HandlerStack::create();
+        $stack->push(
+        new CacheMiddleware(
+            new PrivateCacheStrategy(
+                new FlysystemStorage(
+                    new Local(INPSYDE_PATH . './tmp/cache/guzzle/')
+                )
+            ), 60
+        ));
+        $client = new Client(['handler' => $stack]);
+        return new Users($client, $url);
     }
 }
 ?>
