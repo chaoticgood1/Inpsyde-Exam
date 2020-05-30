@@ -54,7 +54,7 @@ class Users
         new CacheMiddleware(
             new PrivateCacheStrategy(
                 new FlysystemStorage(
-                    new Local(INPSYDE_PATH . './tmp/cache/guzzle/')
+                    new Local(INPSYDE_PATH . '/tmp/cache/guzzle/')
                 )
             ), 60
         ));

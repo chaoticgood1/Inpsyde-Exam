@@ -73,24 +73,25 @@ register_activation_hook(plugins_url('Inpsyde.php'), array(new Inpsyde, 'flush_r
 
 /** 
  * TODO:
- * - Create custom Endpoint(Not a REST), it is a simple routing...
- * - Call to REST endpoint to https://jsonplaceholder.typicode.com/users
- * - Parse JSON, build table
- * - Row contains id, name, username, arranged chronologically
+ * - Create custom Endpoint(Not a REST), it is a simple routing... (Done)
+ * - Call to REST endpoint to https://jsonplaceholder.typicode.com/users (Done)
+ * - Parse JSON, build table (Done)
+ * - Row contains id, name, username, arranged chronologically (Done)
  * - (CSS beautify optional)
- * - When clicking on any column, it should show more of user details(Not posts, etc)
- * - Show max one user, reload when clicking on the other
- * - Cache HTTP requests, rationale should be documented in the README 
- * - Error Handling for the external HTTP requests
- * - Navigation shouldn't be disrupted
+ * - When clicking on any column, it should show more of user details(Not posts, etc) (Done)
+ * - Show max one user, reload when clicking on the other (Done)
+ * - Cache HTTP requests, rationale should be documented in the README
+ * - Error Handling for the external HTTP requests (Done)
+ * - Navigation shouldn't be disrupted (Done)
  * - Update README, in Markdown-formatting explain usage
  * - And decisiions behind the implementation
  * - Inpsyde code style (Use the installed package)
  * - Automated tests
  * - Create LICENSE file
  * - Extra features(Optional)
- * - Unit tests (Use Brain Monkey package)
+ * - Unit tests (Use Brain Monkey package) (Dropped the idea, PHPUnit is enough)
  * - Other tests (Optional)
  * - Explain installed packages in README
+ * - Load composer autoload in wp-config.php
  **/
 ?>

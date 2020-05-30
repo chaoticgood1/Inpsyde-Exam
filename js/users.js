@@ -5,7 +5,6 @@
         handleIDClick()
         handleNameClick()
 
-        
         function handleIDClick() {
             users.listenToUserIdClicks()
             users.listenToUsernameClicks()
@@ -33,7 +32,6 @@
                 try {
                     users.latestDataBeingProcessed = name
                     users.showLoading()
-                    users.validateName(name)
                     details = await users.getUserDetail("name", name)
                     users.validateResultByName(details)
                     let elementString = users.getElementString(details[0])
@@ -50,7 +48,7 @@
         listenToUserIdClicks() {
             $("#users .user-id").on("click", function(e) {
                 e.preventDefault();
-                let id = parseInt($(this).html()) // Check for conversion error
+                let id = parseInt($(this).html())
                 dispatch(Users.ID_CLICKED, {id: id})
             })
         }
@@ -66,7 +64,7 @@
         listenToUsernameClicks() {
             $("#users .user-username").on("click", function(e) {
                 e.preventDefault();
-                let id = parseInt($(this).attr("id")) // Check for conversion error
+                let id = parseInt($(this).attr("id")) 
                 dispatch(Users.ID_CLICKED, {id: id})
             })
         }
@@ -78,22 +76,7 @@
             }
         }
 
-
-        validateName(name) {
-            // TODO: Add more validation
-            // - Should have no number
-            // - Special characters?
-            
-        }
-
-        validateUsername(username) {
-            // TODO: Add more validation
-            // - Special characters?
-            
-        }
-
         validateResultById(details) {
-            // TODO: Add more validation
             if (details['id'] != this.latestDataBeingProcessed)
                 throw { id: 0, message: ""}
         }
@@ -107,7 +90,6 @@
             }
 
             if (!Array.isArray(details)) {
-                // TODO: Update when creating unit tests
                 throw { id: 2, message: "Expected Array"} 
             }
 
@@ -125,7 +107,6 @@
             }
 
             if (!Array.isArray(details)) {
-                // TODO: Update when creating unit tests
                 throw { id: 2, message: "Expected Array"} 
             }
 
@@ -134,18 +115,12 @@
             }
         }
 
-
-        // Error Handling
         handleErrorById(err) {
-            // TODO: Handle errors
-            console.log(err)
             if (err.id != 0)
                 this.showError(err)
         }
 
         handleErrorByName(err) {
-            // TODO: Handle errors
-            console.log(err)
             if (err.id != 0)
                 this.showError(err)
         }
@@ -187,8 +162,6 @@
         getUserDetail(key, value) {
             let param = encodeURIComponent(value)
             let url = Users.API + `/?${key}=${param}`
-
-            console.log(url)
             return get(url)
         }
     }
