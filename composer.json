@@ -4,6 +4,8 @@
         "brain/monkey": "2.*"
     },
     "require": {
-        "antecedent/patchwork": "^2.1"
+        "antecedent/patchwork": "^2.1",
+        "phpunit/phpunit": "^8.5",
+        "mockery/mockery": "^1.3"
     }
 }
