@@ -15,7 +15,10 @@ use GuzzleHttp\Exception\ClientException;
 
 class Users 
 {
-    public const USERS_API = "https://jsonplaceholder.typicode.com/users";
+    public static $USERS_API = "https://jsonplaceholder.typicode.com/users";
+
+    private $stack;
+    private $client;
 
     function __construct() {
         $this->initClientWithCaching();
@@ -38,7 +41,7 @@ class Users
 
     public function getData() // Rename? Later
     {
-        $data = $this->get(Users::USERS_API);
+        $data = $this->get(Users::$USERS_API);
         if ($data["statusCode"] == "200") {
             return $data["users"];
         }
