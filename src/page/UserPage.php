@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 /*
-Template Name: Users
-*/
-/** Create documentation, adhere to code convention */
+ * Template Name: Users
+ */
 
 require(INPSYDE_PATH . 'src/Users.php');
 ?>
@@ -16,13 +15,21 @@ require(INPSYDE_PATH . 'src/Users.php');
         <th>Name</th>
         <th>Username</th>
     </tr>
-    <?php foreach($users->getData() as $user): ?>
+    <?php foreach ($users->getData() as $user) : ?>
     <tr>
-        <td><a href="/" class="user-id"><?php echo $user->id; ?></a></td>
-        <td><a href="/" class="user-name"><?php echo $user->name; ?></a></td>
         <td>
-            <a href="/" class="user-username" id="<?php echo $user->id; ?>">
-                <?php echo $user->username; ?>
+            <a href="/" class="user-id">
+                <?php echo esc_textarea($user->id); ?>
+            </a>
+        </td>
+        <td>
+            <a href="/" class="user-name">
+                <?php echo esc_textarea($user->name); ?>
+            </a></td>
+        <td>
+            <a href="/" class="user-username" 
+                id="<?php echo esc_textarea($user->id); ?>">
+                <?php echo esc_textarea($user->username); ?>
             </a>
         </td>
     </tr>
