@@ -48,7 +48,7 @@
         listenToUserIdClicks() {
             $("#users .user-id").on("click", function(e) {
                 e.preventDefault();
-                let id = parseInt($(this).html())
+                let id = parseInt($(this).html().trim())
                 dispatch(Users.ID_CLICKED, {id: id})
             })
         }
@@ -56,7 +56,7 @@
         listenToNameClicks() {
             $("#users .user-name").on("click", function(e) {
                 e.preventDefault();
-                let name = $(this).html()
+                let name = $(this).html().trim()
                 dispatch(Users.NAME_CLICKED, {name: name})
             })
         }
@@ -64,7 +64,7 @@
         listenToUsernameClicks() {
             $("#users .user-username").on("click", function(e) {
                 e.preventDefault();
-                let id = parseInt($(this).attr("id")) 
+                let id = parseInt($(this).attr("id").trim())
                 dispatch(Users.ID_CLICKED, {id: id})
             })
         }
