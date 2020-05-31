@@ -3,7 +3,7 @@
  * Plugin Name: Inpsyde Exam
  * Description: Ways to test skills for qualification
  * Author: Monico Colete
- * Version: 0.1
+ * Version: 1.0
  * PHP Version 7.2
  *
  * @category Plugin_Inpsyde
