@@ -1,6 +1,9 @@
 # Inpsyde-Exam
 Plugin creation exam for Inpsyde
 
+# Disclaimer
+Nickan and mcolete are my usernames, I created the README.md on the browser using Nickan which I think I shouldn't, that's why it seems like a collaborative effort, sorry for the confusion.
+
 # Requirements:
 - PHP 7.2
 - Wordpress 5.4.1
@@ -35,8 +38,12 @@ define( 'IS_AUTOLOADING', true );
 # Non-obvious Implementation Choices
 - I used basic php page routing for custom endpoint.
 
-# Possible Error
+# Possible Errors
 - If HTTP caching won't work due to "/tmp" folder not created, please set the directory permission 
+- On Firefox it works perfectly.
+- On Google Chrome sometimes won't load the page when typing shortcut URL in address bar (Ex: localhost/users).
+- But typing the whole URL is fine (http://localhost/users), though in console it shows 404 for /users.
+- CORS issues which happens every now and then, probably the server in jsonplaceholder sets randomly? The plugin handles it well.
 
 # Know Issues in Coding Convention
 
@@ -72,12 +79,6 @@ define( 'IS_AUTOLOADING', true );
 - And https://stackoverflow.com/questions/62115353/detected-access-of-super-global-var-server-probably-needs-manual-inspection-a
 - I hope that I didn't violate your rules, I will just edit the question if I did and/or ask the moderator to remove it.
 
-
-
-# Extra Notes
-- On Firefox it works perfectly.
-- On Google Chrome sometimes won't load the page when typing shortcut URL in address bar (Ex: localhost/users).
-- But typing the whole URL is fine (http://localhost/users), though in console it shows 404 for /users.
 
 # License
 
