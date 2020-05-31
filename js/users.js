@@ -15,7 +15,7 @@
                     users.latestDataBeingProcessed = id
                     users.showLoading()
                     users.validateId(id)
-                    details = await users.getUserDetailById(id)
+                    details = await users.getUserDetailById(id)\
                     users.validateResultById(details)
                     let elementString = users.getElementString(details)
                     users.showDetails(elementString)
@@ -77,18 +77,24 @@
         }
 
         validateResultById(details) {
-            if (details['id'] != this.latestDataBeingProcessed)
-                throw { id: 0, message: ""}
+            if (details['id'] != undefined && 
+                details['id'] != this.latestDataBeingProcessed) {
+                throw { id: Users.IGNORE_RESULT_CODE, message: ""}
+            }
+                
+
+            this.genericValidation(details)
         }
 
         validateResultByName(details) {
-            if (details[0]['name'] != this.latestDataBeingProcessed)
-                throw { id: 0, message: ""}
-            
-            if (details["message"] != undefined) {
-                throw { id: 1, message: details["message"]} 
+            if (details[0] != undefined &&
+                details[0]['name'] != undefined && 
+                details[0]['name'] != this.latestDataBeingProcessed) {
+                throw { id: Users.IGNORE_RESULT_CODE, message: ""}
             }
-            
+                
+            this.genericValidation(details)
+
             if (!Array.isArray(details)) {
                 throw { id: 2, message: "Expected Array"} 
             }
@@ -99,20 +105,26 @@
         }
 
         validateResultByUsername(details) {
-            console.log(this.latestDataBeingProcessed)
-            if (details['username'] != this.latestDataBeingProcessed)
-                throw { id: 0, message: ""}
-
-            if (details["message"] != undefined) {
-                throw { id: 1, message: details["message"]} 
+            if (details['username'] != undefined && 
+                details['username'] != this.latestDataBeingProcessed) {
+                throw { id: Users.IGNORE_RESULT_CODE, message: ""}
             }
+                
+            this.genericValidation(details)
+        }
 
-            if (!Array.isArray(details)) {
-                throw { id: 2, message: "Expected Array"} 
+        genericValidation(details) {
+            if (details['message'] != undefined) {
+                throw { 
+                    id: Users.UNABLE_TO_FETCH_DATA_CODE, 
+                    message: details['message']
+                }
             }
-
-            if (details.length != 1) {
-                throw { id: 3, message: "Expected only length of 1, returns " + details.length } 
+            if (Object.keys(details).length == 0) {
+                throw {
+                    id: Users.EMPTY_DATA, 
+                    message: "Return is empty"
+                }
             }
         }
 
@@ -126,10 +138,10 @@
                 this.showError(err)
         }
 
-        showError(msg) {
+        showError(err) {
             let $details = $("#user-details")
             $details.empty()
-            $details.append("Error: " + msg)
+            $details.append(`Error Code: ${err["id"]}, ${err["message"]}`)
         }
 
         showLoading() {
@@ -180,4 +192,7 @@
     Users.API = "https://jsonplaceholder.typicode.com/users"
     Users.ID_CLICKED = "ID_CLICKED"
     Users.NAME_CLICKED = "NAME_CLICKED"
+    Users.UNABLE_TO_FETCH_DATA_CODE = 1
+    Users.EMPTY_DATA = 4
+    Users.IGNORE_RESULT_CODE = 0
 })(jQuery);
