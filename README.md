@@ -31,6 +31,42 @@ Plugin creation exam for Inpsyde
 # Possible Error
 - If HTTP caching won't work due to "/tmp" folder not created, please set the directory permission 
 
+# Know Issues in Coding Convention
+
+
+- I am unable to issues below, which I admit defeat despite my Level 60 Googling Skills:
+<details><summary>CLICK ME</summary>
+
+````
+ 16 | ERROR | Class 'Inpsyde\Model\Users', located at
+    |       | '/home/src/wordpress/wp-content/plugins/inpsyde-exam/src/model/Users.php', is not
+    |       | compliant with PSR-4 configuration. (Inpsyde.CodeQuality.Psr4.InvalidPSR4)
+````
+
+</details>
+
+- And this one:
+
+<details><summary>CLICK ME</summary>
+
+````
+ 18 | ERROR   | Class 'Inpsyde\Inpsyde', located at
+    |         | '/home/src/wordpress/wp-content/plugins/inpsyde-exam/src/Inpsyde.php', is not
+    |         | compliant with PSR-4 configuration. (Inpsyde.CodeQuality.Psr4.InvalidPSR4)
+ 29 | WARNING | Detected access of super global var $_SERVER, probably needs manual inspection.
+    |         | (WordPress.VIP.SuperGlobalInputUsage.AccessDetected)
+ 30 | WARNING | Detected access of super global var $_SERVER, probably needs manual inspection.
+    |         | (WordPress.VIP.SuperGlobalInputUsage.AccessDetected)
+ 30 | ERROR   | Missing wp_unslash() before sanitization. (WordPress.VIP.ValidatedSanitizedInput.MissingUnslash)
+````
+</details>
+
+- So I cleaned the data first and asked the God sent forum: https://stackoverflow.com/questions/62112780/error-class-path-is-not-compliant-with-psr-4-configuration-inpsyde-codequal?noredirect=1#comment109854819_62112780
+- And https://stackoverflow.com/questions/62115353/detected-access-of-super-global-var-server-probably-needs-manual-inspection-a
+- I hope that I didn't violate your rules, I will just edit the question if I did and/or ask the moderator to remove it.
+
+
+
 # Extra Notes
 - On Firefox it works perfectly.
 - On Google Chrome sometimes won't load the page when typing shortcut URL in address bar (Ex: localhost/users).
