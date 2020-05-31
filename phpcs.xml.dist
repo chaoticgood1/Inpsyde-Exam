@@ -4,6 +4,7 @@
     <description>My Project coding standard.</description>
 
     <file>./src</file>
+    <file>Plugin.php</file>
 
     <arg value="sp"/>
     <arg name="colors"/>

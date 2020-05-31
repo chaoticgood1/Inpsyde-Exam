@@ -36,19 +36,13 @@ class Inpsyde
         return "";
     }
 
-    public function flushRules()
-    {
-        $this->rewriteRules();
-        flush_rewrite_rules();
-    }
-
     public function rewriteRules()
     {
         add_rewrite_rule('account/(.+?)/?$', 'index.php?account_page=$matches[1]', 'top');
         add_rewrite_tag('%account_page%', '([^&]+)');
     }
 
-    public function addUsersScript()
+    private function addUsersScript()
     {
         add_action('wp_enqueue_scripts', function () {
             wp_enqueue_script(

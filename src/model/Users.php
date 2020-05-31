@@ -53,7 +53,7 @@ class Users
 
     public static function newInstance(string $url = Users::USERS_API): Users
     {
-        require INPSYDE_PATH . "vendor/autoload.php";
+        require INPSYDE_PATH . "/vendor/autoload.php";
         $stack = HandlerStack::create();
         $stack->push(
             new CacheMiddleware(
