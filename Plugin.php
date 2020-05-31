@@ -13,6 +13,10 @@
  * @link     http://localhost/
  */
 
+if ( defined( 'IS_AUTOLOADING' ) && ! IS_AUTOLOADING ) {
+    require_once plugin_dir_path( __FILE__ ) . 'vendor/composer/autoload.php';
+}
+
 define('INPSYDE_PATH', plugin_dir_path(__FILE__));
 
 include(INPSYDE_PATH . '/src/Inpsyde.php');
