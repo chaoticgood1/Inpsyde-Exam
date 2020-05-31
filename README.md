@@ -25,6 +25,13 @@ define( 'IS_AUTOLOADING', true );
 - Then click enable
 - Type {Home URL}/users in the browser (Ex: "http://localhost/users)
 
+# Testing Code Convention and Unit Test
+- In the root plugin folder, enter:
+```
+$ vendor/bin/phpcs
+$ vendor/bin/phpunit
+```
+
 # HTTP Cache
 - Used guzzlehttp/guzzle, kevinrob/guzzle-cache-middleware and league/flysystem.
 - I tried a lot of other options to cache, even play with basic curl options, but none of them gives an easy indicator that it is really caching.
