@@ -6,8 +6,15 @@ Plugin creation exam for Inpsyde
 - Wordpress 5.4.1
 
 # Installation
-- In progress... (Implement composer load in wp-config.php to load this plugin)
 - Clone the repository
+- Type in the root plugin directory:
+```
+$ composer install
+```
+- Add in wp-config.php to control loading of Composer autoload
+```
+define( 'IS_AUTOLOADING', true );
+```
 - Copy to the Wordpress plugin directory
 - Log in to Wordpress Admin page
 - Go to Plugin
@@ -37,11 +44,11 @@ Plugin creation exam for Inpsyde
 - I am unable to issues below, which I admit defeat despite my Level 60 Googling Skills:
 <details><summary>CLICK ME</summary>
 
-````
+```
  16 | ERROR | Class 'Inpsyde\Model\Users', located at
     |       | '/home/src/wordpress/wp-content/plugins/inpsyde-exam/src/model/Users.php', is not
     |       | compliant with PSR-4 configuration. (Inpsyde.CodeQuality.Psr4.InvalidPSR4)
-````
+```
 
 </details>
 
@@ -75,10 +82,3 @@ Plugin creation exam for Inpsyde
 # License
 
 https://opensource.org/licenses/MIT
-
-
-// TODO:
-- Requirements 
-- Installation and usage instruction
-- Explanations behind non-obvious implementation choices
-- Your composer.json is valid and complete, and running composer install makes the plugin ready to be used.

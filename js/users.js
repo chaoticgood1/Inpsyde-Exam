@@ -15,7 +15,7 @@
                     users.latestDataBeingProcessed = id
                     users.showLoading()
                     users.validateId(id)
-                    details = await users.getUserDetailById(id)\
+                    details = await users.getUserDetailById(id)
                     users.validateResultById(details)
                     let elementString = users.getElementString(details)
                     users.showDetails(elementString)
