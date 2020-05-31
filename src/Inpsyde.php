@@ -26,20 +26,13 @@ class Inpsyde
 
     public function includeTemplate(string $template): string
     {
-        // if (isset($_SERVER['REQUEST_URI'])) {
-        //     $url = esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']));
-        //     if ($request === "/users") {
-        //         return INPSYDE_PATH . '/src/page/UserPage.php';
-        //     }
-        // }
-        // $url = esc_url_raw(wp_unslash($_SERVER['REQUEST_URI']));
-        // if ($request === "/users") {
-        //     return INPSYDE_PATH . '/src/page/UserPage.php';
-        // }
-        $request = $_SERVER['REQUEST_URI'];
-        if ($request == "/users") {
-            return INPSYDE_PATH . '/src/page/UserPage.php';
+        if (isset($_SERVER['REQUEST_URI'])) {
+            $request = esc_url_raw($_SERVER['REQUEST_URI']);
+            if ($request === "/users") {
+                return INPSYDE_PATH . '/src/page/UserPage.php';
+            }
         }
+        
         return "";
     }
 
