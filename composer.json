@@ -6,7 +6,6 @@
         "phpunit/phpunit": "^8.5",
         "guzzlehttp/guzzle": "^6.5",
         "kevinrob/guzzle-cache-middleware": "^3.3",
-        "doctrine/cache": "^1.10",
         "league/flysystem": "^1.0"
     }
 }
