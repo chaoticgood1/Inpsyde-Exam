@@ -53,7 +53,7 @@ class Inpsyde
         add_action('wp_enqueue_scripts', function () {
             wp_enqueue_script(
                 'users.js',
-                plugins_url('/js/users.js', __FILE__),
+                plugins_url('inpsyde-exam/js/users.js', INPSYDE_PATH),
                 ['jquery'],
                 0.1,
                 false
