@@ -36,7 +36,7 @@ class Users
             $res = $this->client->request('GET', $url);
             return [
                 "statusCode" => $res->getStatusCode(),
-                "users" => json_decode($res->getBody()->getContents(), true)
+                "users" => json_decode($res->getBody()->getContents(), true),
             ];
         } catch (RequestException  $exception) {
             return [
