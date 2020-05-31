@@ -25,6 +25,7 @@ define( 'IS_AUTOLOADING', true );
 - Then click enable
 - Type {Home URL}/users in the browser (Ex: "http://localhost/users)
 
+
 # Testing Code Convention and Unit Test
 - In the root plugin folder, enter:
 ```
@@ -45,14 +46,15 @@ $ vendor/bin/phpunit
 # Non-obvious Implementation Choices
 - I used basic php page routing for custom endpoint.
 
-# Possible Errors
+# Known Errors
+- After doing installation and it doesn't load, please check director permission
 - If HTTP caching won't work due to "/tmp" folder not created, please set the directory permission 
 - On Firefox it works perfectly.
 - On Google Chrome sometimes won't load the page when typing shortcut URL in address bar (Ex: localhost/users).
 - But typing the whole URL is fine (http://localhost/users), though in console it shows 404 for /users.
 - CORS issues which happens every now and then, probably the server in jsonplaceholder sets randomly? The plugin handles it well.
 
-# Know Issues in Coding Convention
+# Known Issues in Coding Convention
 
 
 - I am unable to issues below, which I admit defeat despite my Level 60 Googling Skills:
