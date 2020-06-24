@@ -47,7 +47,21 @@ $ vendor/bin/phpunit
 - I used basic php page routing for custom endpoint.
 
 # Known Errors
-- After doing installation and it doesn't load, please check director permission
+- After doing installation and it doesn't load, please check directory permission
+- Or you might need to add these in the .htaccess in the Wordpress root directory
+```
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+```
 - If HTTP caching won't work due to "/tmp" folder not created, please set the directory permission 
 - On Firefox it works perfectly.
 - On Google Chrome sometimes won't load the page when typing shortcut URL in address bar (Ex: localhost/users).
