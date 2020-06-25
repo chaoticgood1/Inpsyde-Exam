@@ -1,15 +1,38 @@
 <?php declare(strict_types=1);
 namespace Inpsyde;
 
+/**
+ * Manages how the files required to run /users path
+ * 
+ * @since 1.0
+ * 
+ * @package   Inpsyde
+ * @author    Monico Colete <colete_nico@yahoo.com>
+ * @license   https://opensource.org/licenses/MIT MIT License
+ */
 class Inpsyde
-{
+{    
+    /**
+     * Adds the necessary filters and adds the users.js
+     * 
+     * @since 1.0
+     * 
+     * @return void
+     */
     public function init()
     {
         add_filter('template_include', [ $this, 'includeTemplate' ]);
-        add_filter('init', [ $this, 'rewriteRules' ]);
+        // add_filter('init', [ $this, 'rewriteRules' ]);
         $this->addUsersScript();
     }
 
+    /**
+     * includes the template for the /users
+     * 
+     * @since 1.0
+     * 
+     * @return void
+     */
     public function includeTemplate(string $template): string
     {
         if (isset($_SERVER['REQUEST_URI'])) {
@@ -20,12 +43,6 @@ class Inpsyde
         }
         
         return $template;
-    }
-
-    public function rewriteRules()
-    {
-        add_rewrite_rule('account/(.+?)/?$', 'index.php?account_page=$matches[1]', 'top');
-        add_rewrite_tag('%account_page%', '([^&]+)');
     }
 
     private function addUsersScript()
