@@ -1,6 +1,8 @@
 <?php declare(strict_types=1);
 /*
  * Template Name: Users
+ * 
+ * Shows the data of all the users
  */
 
 require AUTOLOAD_PHP;
@@ -21,7 +23,7 @@ use Inpsyde\Model\Users;
         <th>Name</th>
         <th>Username</th>
     </tr>
-<?php foreach ($data["users"] as $user) :
+<?php foreach ($users as $user) :
     ?>
     <tr>
         <td>

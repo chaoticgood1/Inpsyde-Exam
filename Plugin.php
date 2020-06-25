@@ -25,7 +25,7 @@ add_action('plugins_loaded', function () {
 /** TODO */
 // Rethinking the solutions
 // #phpDoc: 
-//  -Put documentation to all classess and functions
+//  - Put documentation to all classess and functions
 // #use WordPress API, not 3rd Party like Guzzle: Replace
 //  - Remove all Guzzle instances
 //  - Remove in composer

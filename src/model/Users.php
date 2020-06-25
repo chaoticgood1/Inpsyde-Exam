@@ -22,6 +22,11 @@ use Exception;
  */
 class Users
 {
+    /** TODO */
+    // Replace the guzzle
+    // Remove the guzzle in composer.json
+    // Add the wordpress API
+
     public const USERS_API = "https://jsonplaceholder.typicode.com/users";
 
     protected $client;
@@ -52,29 +57,48 @@ class Users
     /**
      * get
      *
-     * @param  mixed $url
-     * @param  mixed $params
+     * @param  mixed $url The endpoint to fetch data
      * @return array
      */
-    private function get(string $url, array $params = []): array
+    private function get(string $url): array
     {
-        try {
-            $res = $this->client->request('GET', $url);
+        $request = \wp_remote_get($url);
+        // error_log(print_r($request, true));
+        if( is_wp_error($request)) {
+            // Create error response
+            error_log(print_r($request->errors['http_request_failed'][0], true));
             return [
-                "statusCode" => $res->getStatusCode(),
-                "users" => json_decode($res->getBody()->getContents(), true),
-            ];
-        } catch (RequestException  $exception) {
-            return [
-                "statusCode" => $exception->getResponse()->getStatusCode(),
-                "message" => $exception->getMessage(),
-            ];
-        } catch (Exception $exception) {
-            return [
-                "statusCode" => "404",
-                "message" => $exception->getMessage(),
+              "statusCode" => 404,
+              "message" => $request->errors['http_request_failed'][0]
             ];
         }
+        error_log("Test");
+        
+        $body = wp_remote_retrieve_body($request);
+        error_log(print_r($body, true));
+        return [
+          "statusCode" => 200,  // Refactor, get the statusCode if possible
+          "users" => json_decode($body, true)
+        ];
+
+        
+        // try {
+        //     $res = $this->client->request('GET', $url);
+        //     return [
+        //         "statusCode" => $res->getStatusCode(),
+        //         "users" => json_decode($res->getBody()->getContents(), true),
+        //     ];
+        // } catch (RequestException  $exception) {
+        //     return [
+        //         "statusCode" => $exception->getResponse()->getStatusCode(),
+        //         "message" => $exception->getMessage(),
+        //     ];
+        // } catch (Exception $exception) {
+        //     return [
+        //         "statusCode" => "404",
+        //         "message" => $exception->getMessage(),
+        //     ];
+        // }
     }
     
     /**
