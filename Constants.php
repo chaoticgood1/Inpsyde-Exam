@@ -1,3 +1,3 @@
-<?php
+<?php declare(strict_types=1);
 
-define('INPSYDE_PATH', plugin_dir_path(__FILE__));
+define('INPSYDE_PATH', dirname(__FILE__, 1));
