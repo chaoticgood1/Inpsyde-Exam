@@ -22,7 +22,6 @@ class Inpsyde
     public function init()
     {
         add_filter('template_include', [ $this, 'includeTemplate' ]);
-        // add_filter('init', [ $this, 'rewriteRules' ]);
         $this->addUsersScript();
     }
 
@@ -45,6 +44,13 @@ class Inpsyde
         return $template;
     }
 
+    /**
+     * Adds the scripts to show the users on the front-end
+     * 
+     * @since 1.0
+     * 
+     * @return void
+     */
     private function addUsersScript()
     {
         add_action('wp_enqueue_scripts', function () {

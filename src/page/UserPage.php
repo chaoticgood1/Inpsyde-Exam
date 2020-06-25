@@ -3,7 +3,7 @@
  * Template Name: Users
  */
 
-require(INPSYDE_PATH . '/src/model/Users.php');
+require AUTOLOAD_PHP;
 
 use Inpsyde\Model\Users;
 ?>

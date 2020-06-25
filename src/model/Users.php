@@ -13,23 +13,49 @@ use GuzzleHttp\Exception\RequestException;
 
 use Exception;
 
+/**
+ * Model for the users data
+ * 
+ * @package  Inpsyde\Model
+ * @author   Monico Colete <colete_nico@yahoo.com>
+ * @license  https://opensource.org/licenses/MIT MIT License
+ */
 class Users
 {
     public const USERS_API = "https://jsonplaceholder.typicode.com/users";
 
     protected $client;
-
+    
+    /**
+     * __construct
+     *
+     * @param  mixed $client
+     * @param  mixed $url
+     * @return void
+     */
     public function __construct(Client $client, string $url)
     {
         $this->client = $client;
         $this->url = $url;
     }
-
+    
+    /**
+     * data
+     *
+     * @return array
+     */
     public function data(): array
     {
         return $this->get($this->url);
     }
-
+    
+    /**
+     * get
+     *
+     * @param  mixed $url
+     * @param  mixed $params
+     * @return array
+     */
     private function get(string $url, array $params = []): array
     {
         try {
@@ -50,7 +76,13 @@ class Users
             ];
         }
     }
-
+    
+    /**
+     * newInstance
+     *
+     * @param  mixed $url
+     * @return Users
+     */
     public static function newInstance(string $url = Users::USERS_API): Users
     {
         require INPSYDE_PATH . "/vendor/autoload.php";

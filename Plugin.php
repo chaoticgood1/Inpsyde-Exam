@@ -6,11 +6,11 @@
  * Version: 1.0
  * PHP Version 7.2
  *
- * @category Plugin_Inpsyde
- * @package  Plugin_Inpsyde
- * @author   Monico Colete <colete_nico@yahoo.com>
- * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://homeurl/users
+ * @category  Plugin_Inpsyde
+ * @package   Plugin_Inpsyde
+ * @author    Monico Colete <colete_nico@yahoo.com>
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      http://homeurl/users
  */
 
 require "vendor/autoload.php";
@@ -31,8 +31,6 @@ add_action('plugins_loaded', function () {
 //  - Remove in composer
 //  - Find a way to implement HTTP caching in WP API
 //  - I think it is automated, but have to find a explicit way to do it
-// #Autoloading: 
-//  - Try to autoload Constants.php
 // #Unit Tests, no User Tests
 //  - Should I add more unit tests?
 //  - I think what I did was not a Unit Tests?
