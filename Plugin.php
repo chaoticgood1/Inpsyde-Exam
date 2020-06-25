@@ -10,15 +10,11 @@
  * @package  Plugin_Inpsyde
  * @author   Monico Colete <colete_nico@yahoo.com>
  * @license  https://opensource.org/licenses/MIT MIT License
- * @link     http://localhost/users
+ * @link     http://homeurl/users
  */
 require_once plugin_dir_path(__FILE__) . 'Constants.php';
 
-if (defined('IS_AUTOLOADING') && ! IS_AUTOLOADING) {
-    require_once plugin_dir_path(__FILE__) . 'vendor/composer/autoload.php';
-}
-
-include(INPSYDE_PATH . '/src/Inpsyde.php');
+require "vendor/autoload.php";
 
 use Inpsyde\Inpsyde;
 
