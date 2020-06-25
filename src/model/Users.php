@@ -2,15 +2,6 @@
 
 namespace Inpsyde\Model;
 
-use GuzzleHttp\Client;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7;
-use Kevinrob\GuzzleCache\CacheMiddleware;
-use Kevinrob\GuzzleCache\Storage\FlysystemStorage;
-use Kevinrob\GuzzleCache\Strategy\PrivateCacheStrategy;
-use League\Flysystem\Adapter\Local;
-use GuzzleHttp\Exception\RequestException;
-
 use Exception;
 
 /**
@@ -22,23 +13,22 @@ use Exception;
  */
 class Users
 {
-    public const USERS_API = "https://jsonplaceholder.typicode.com/users";
+    public const API = "https://jsonplaceholder.typicode.com/users";
     
     /**
-     * __construct
      * 
-     * @param  mixed $url
+     * @param  mixed $url The endpoint to fetch data 
      * @return void
      */
-    public function __construct(string $url = Users::USERS_API)
+    public function __construct(string $url = Users::API)
     {
         $this->url = $url;
     }
     
     /**
-     * data
+     * Data of all the users
      *
-     * @return array
+     * @return array Result of getting the data of users
      */
     public function data(): array
     {
@@ -46,10 +36,10 @@ class Users
     }
     
     /**
-     * get
+     * Get implementation to fetch users data
      *
      * @param  mixed $url The endpoint to fetch data
-     * @return array
+     * @return array Result of fetching the url users data
      */
     private function get(string $url): array
     {

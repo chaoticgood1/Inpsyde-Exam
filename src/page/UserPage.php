@@ -11,7 +11,8 @@ use Inpsyde\Model\Users;
 ?>
 
 <?php get_header(); ?>
-<?php $users = new Users();
+<?php 
+    $users = new Users();
     $data = $users->data();
     $users = (isset($data["users"])) ? $data["users"]: [];
     $message = ($data['statusCode'] === 200) ?
