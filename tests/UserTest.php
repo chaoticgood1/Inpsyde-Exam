@@ -9,19 +9,14 @@ use Inpsyde\Model\Users;
 
 class MyTestCase extends PHPUnit_Framework_TestCase
 {
-
-    /** TODO 
-     * - Remove guzzle
-     * - Know how to mock Wordpress API
-     * - Update the tests
-    */
     protected function setUp() {
         parent::setUp();
         Monkey\setUp();
     }
 
     public function testUsersData() {
-        Functions\when('wp_remote_get')->justReturn('');
+        $object = \Mockery::mock('WP_Http');
+        Functions\when('wp_remote_get')->justReturn($object);
         Functions\when('wp_remote_retrieve_body')->justReturn(
             json_encode(
                 array(
@@ -40,6 +35,21 @@ class MyTestCase extends PHPUnit_Framework_TestCase
         $this->assertEquals(isset($user['id']), true);
         $this->assertEquals(isset($user['name']), true);
         $this->assertEquals(isset($user['username']), true);
+    }
+
+    public function testFailedGettingUsersDataInvalidUrl() {
+        $object = \Mockery::mock('WP_Error');
+        $object
+            ->shouldReceive('get_error_message')
+            ->once()
+            ->withNoArgs()
+            ->andReturn("A valid URL was not provided.");
+        Functions\when('wp_remote_get')->justReturn($object);
+
+        $users = new Users();
+        $data = $users->data();
+        $this->assertEquals($data['statusCode'], 404);
+        $this->assertEquals($data['message'], "A valid URL was not provided.");
     }
 
     protected function tearDown()
