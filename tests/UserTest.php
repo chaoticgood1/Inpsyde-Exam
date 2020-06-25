@@ -16,7 +16,7 @@ class MyTestCase extends PHPUnit_Framework_TestCase
 
     public function testUsersData() {
         $object = \Mockery::mock('WP_Http');
-        Functions\when('wp_remote_get')->justReturn($object);
+        Functions\when('wp_safe_remote_get')->justReturn($object);
         Functions\when('wp_remote_retrieve_body')->justReturn(
             json_encode(
                 array(
@@ -44,7 +44,7 @@ class MyTestCase extends PHPUnit_Framework_TestCase
             ->once()
             ->withNoArgs()
             ->andReturn("A valid URL was not provided.");
-        Functions\when('wp_remote_get')->justReturn($object);
+        Functions\when('wp_safe_remote_get')->justReturn($object);
 
         $users = new Users();
         $data = $users->data();
@@ -57,54 +57,6 @@ class MyTestCase extends PHPUnit_Framework_TestCase
         Monkey\tearDown();
         parent::tearDown();
     }
-
-    // public function testError500() {
-    //     $mock = new MockHandler([
-    //         new RequestException('Error Communicating with Server', 
-    //             new Request('GET', 'test'),
-    //             new Response(500)
-    //         )]
-    //     );
-
-    //     $stack = HandlerStack::create($mock);
-    //     $client = new Client(['handler' => $stack]);
-    //     $users = new Users($client, Users::USERS_API);
-    //     $data = $users->data();
-
-    //     $this->assertEquals($data['statusCode'], 500);
-    // }
-
-    // public function testError503() {
-    //     // Actual Exception message is longer
-    //     $mock = new MockHandler([
-    //         new RequestException('503 Service Unavailable', 
-    //             new Request('GET', 'test'),
-    //             new Response(503)
-    //         )]
-    //     );
-
-    //     $stack = HandlerStack::create($mock);
-    //     $client = new Client(['handler' => $stack]);
-    //     $users = new Users($client, Users::USERS_API);
-    //     $data = $users->data();
-    //     $this->assertEquals($data['statusCode'], 503);
-    // }
-
-
-    // // Integration tests
-    // public function testUsersDataWithAPICall() {
-    //     $users = Users::newInstance();
-    //     $data = $users->data();
-
-    //     $this->assertEquals($data['statusCode'], 200);
-
-    //     $users = $data["users"];
-    //     $this->assertEquals(is_array($users), true);
-    //     $this->assertEquals(count($users) > 0, true);
-    //     $this->assertEquals(isset($users[0]['id']), true);
-    //     $this->assertEquals(isset($users[0]['name']), true);
-    //     $this->assertEquals(isset($users[0]['username']), true);
-    // }
 }
 
 ?>

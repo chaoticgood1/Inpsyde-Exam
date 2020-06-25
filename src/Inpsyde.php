@@ -3,20 +3,21 @@ namespace Inpsyde;
 
 /**
  * Manages how the files required to run /users path
- * 
+ *
  * @since 1.0
- * 
+ *
  * @package   Inpsyde
  * @author    Monico Colete <colete_nico@yahoo.com>
  * @license   https://opensource.org/licenses/MIT MIT License
  */
 class Inpsyde
-{    
+{
+
     /**
      * Adds the necessary filters and adds the users.js
-     * 
+     *
      * @since 1.0
-     * 
+     *
      * @return void
      */
     public function init()
@@ -27,9 +28,9 @@ class Inpsyde
 
     /**
      * includes the template for the /users
-     * 
+     *
      * @since 1.0
-     * 
+     *
      * @return void
      */
     public function includeTemplate(string $template): string
@@ -46,9 +47,9 @@ class Inpsyde
 
     /**
      * Adds the scripts to show the users on the front-end
-     * 
+     *
      * @since 1.0
-     * 
+     *
      * @return void
      */
     private function addUsersScript()

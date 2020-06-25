@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 /*
  * Template Name: Users
- * 
+ *
  * Shows the data of all the users
  */
 
@@ -11,7 +11,7 @@ use Inpsyde\Model\Users;
 ?>
 
 <?php get_header(); ?>
-<?php 
+<?php
     $users = new Users();
     $data = $users->data();
     $users = (isset($data["users"])) ? $data["users"]: [];
