@@ -22,25 +22,16 @@ use Exception;
  */
 class Users
 {
-    /** TODO */
-    // Replace the guzzle
-    // Remove the guzzle in composer.json
-    // Add the wordpress API
-
     public const USERS_API = "https://jsonplaceholder.typicode.com/users";
-
-    protected $client;
     
     /**
      * __construct
-     *
-     * @param  mixed $client
+     * 
      * @param  mixed $url
      * @return void
      */
-    public function __construct(Client $client, string $url)
+    public function __construct(string $url = Users::USERS_API)
     {
-        $this->client = $client;
         $this->url = $url;
     }
     
@@ -62,66 +53,19 @@ class Users
      */
     private function get(string $url): array
     {
+        /** TODO, add more robust error checking */
         $request = \wp_remote_get($url);
-        // error_log(print_r($request, true));
         if( is_wp_error($request)) {
-            // Create error response
-            error_log(print_r($request->errors['http_request_failed'][0], true));
             return [
               "statusCode" => 404,
               "message" => $request->errors['http_request_failed'][0]
             ];
         }
-        error_log("Test");
         
         $body = wp_remote_retrieve_body($request);
-        error_log(print_r($body, true));
         return [
           "statusCode" => 200,  // Refactor, get the statusCode if possible
           "users" => json_decode($body, true)
         ];
-
-        
-        // try {
-        //     $res = $this->client->request('GET', $url);
-        //     return [
-        //         "statusCode" => $res->getStatusCode(),
-        //         "users" => json_decode($res->getBody()->getContents(), true),
-        //     ];
-        // } catch (RequestException  $exception) {
-        //     return [
-        //         "statusCode" => $exception->getResponse()->getStatusCode(),
-        //         "message" => $exception->getMessage(),
-        //     ];
-        // } catch (Exception $exception) {
-        //     return [
-        //         "statusCode" => "404",
-        //         "message" => $exception->getMessage(),
-        //     ];
-        // }
-    }
-    
-    /**
-     * newInstance
-     *
-     * @param  mixed $url
-     * @return Users
-     */
-    public static function newInstance(string $url = Users::USERS_API): Users
-    {
-        require INPSYDE_PATH . "/vendor/autoload.php";
-        $stack = HandlerStack::create();
-        $stack->push(
-            new CacheMiddleware(
-                new PrivateCacheStrategy(
-                    new FlysystemStorage(
-                        new Local(INPSYDE_PATH . 'tmp/cache/guzzle/')
-                    )
-                ),
-                60
-            )
-        );
-        $client = new Client(['handler' => $stack]);
-        return new Users($client, $url);
     }
 }

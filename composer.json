@@ -3,10 +3,7 @@
         "inpsyde/php-coding-standards": "^0.13.4"
     },
     "require": {
-        "phpunit/phpunit": "^8.5",
-        "guzzlehttp/guzzle": "^6.5",
-        "kevinrob/guzzle-cache-middleware": "^3.3",
-        "league/flysystem": "^1.0"
+        "phpunit/phpunit": "^8.5"
     },
     "autoload": {
         "psr-4": {
