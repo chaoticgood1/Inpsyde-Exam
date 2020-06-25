@@ -9,5 +9,13 @@
           "Inpsyde\\":"src/"
         },
         "files": ["Constants.php"]
+    },
+    "scripts": {
+        "post-update-cmd": "@composer dumpautoload -o",
+        "post-install-cmd": "@composer dumpautoload -o",
+        "post-package-install": "@composer dumpautoload -o",
+        "post-package-update": "@composer dumpautoload -o",
+        "post-package-uninstall": "@composer dumpautoload -o",
+        "post-create-project-cmd": "@composer dumpautoload -o"
     }
 }
