@@ -1,20 +1,6 @@
 <?php declare(strict_types=1);
 namespace Inpsyde;
 
-/**
- * Plugin Name: Inpsyde Exam
- * Description: Ways to test skills for qualification
- * Author: Monico Colete
- * Version: 0.1
-/**
- * Implements Exam
- *
- * @category Plugin_Inpsyde
- * @package  Plugin_Inpsyde
- * @author   Monico Colete <colete_nico@yahoo.com>
- * @license  https://opensource.org/licenses/MIT
- * @link     http://localhost/
- */
 class Inpsyde
 {
     public function init()
@@ -33,7 +19,7 @@ class Inpsyde
             }
         }
         
-        return "";
+        return $template;
     }
 
     public function rewriteRules()
