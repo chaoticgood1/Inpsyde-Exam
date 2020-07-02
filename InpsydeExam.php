@@ -6,8 +6,8 @@
  * Version: 1.0
  * PHP Version 7.2
  *
- * @category  Plugin_Inpsyde
- * @package   Plugin_Inpsyde
+ * @category  Inpsyde_Exam
+ * @package   PluginInpsyde_Exam_Inpsyde
  * @author    Monico Colete <colete_nico@yahoo.com>
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      http://homeurl/users
