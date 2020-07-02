@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Inpsyde\Model;
+namespace InpsydeExam\Source\Model;
 
 use Exception;
 
 /**
  * Model for the users data
  *
- * @package  Inpsyde\Model
+ * @package  InpsydeExam\Source\Model
  * @author   Monico Colete <colete_nico@yahoo.com>
  * @license  https://opensource.org/licenses/MIT MIT License
  */
