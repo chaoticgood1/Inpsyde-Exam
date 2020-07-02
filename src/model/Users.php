@@ -5,7 +5,7 @@ namespace Inpsyde\Model;
 use Exception;
 
 /**
- * Model for the users data
+ * Model for the users data, to be instantiated in the UserPage.php
  *
  * @package  Inpsyde\Model
  * @author   Monico Colete <colete_nico@yahoo.com>

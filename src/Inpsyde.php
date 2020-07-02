@@ -25,13 +25,12 @@ class Inpsyde
         add_filter('template_include', [ $this, 'includeTemplate' ]);
         $this->addUsersScript();
     }
-
+        
     /**
-     * includes the template for the /users
+     * Includes the template for the /users
      *
-     * @since 1.0
-     *
-     * @return void
+     * @param  mixed $template
+     * @return string
      */
     public function includeTemplate(string $template): string
     {
