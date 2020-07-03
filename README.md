@@ -9,12 +9,11 @@ Nickan and mcolete are my usernames, I created the README.md on the browser usin
 - Wordpress 5.4.1
 
 # Installation
-- Clone the repository
+- Clone the repository to wordpress plugin directory
 - Type in the root plugin directory:
 ```
 $ composer install
 ```
-- Copy to the Wordpress plugin directory
 - Log in to Wordpress Admin page
 - Go to Plugin
 - Find "Inpsyde Exam"
