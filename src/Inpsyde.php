@@ -29,7 +29,7 @@ class Inpsyde
     /**
      * Includes the template for the /users
      *
-     * @param  mixed $template Default template 
+     * @param  mixed $template Default template
      * @return string Template to show, will be UserPage.php if the path is /users
      */
     public function includeTemplate(string $template): string

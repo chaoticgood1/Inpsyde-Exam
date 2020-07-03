@@ -14,10 +14,6 @@ Nickan and mcolete are my usernames, I created the README.md on the browser usin
 ```
 $ composer install
 ```
-- Add in wp-config.php to control loading of Composer autoload
-```
-define( 'IS_AUTOLOADING', true );
-```
 - Copy to the Wordpress plugin directory
 - Log in to Wordpress Admin page
 - Go to Plugin
@@ -34,14 +30,12 @@ $ vendor/bin/phpunit
 ```
 
 # HTTP Cache
-- Used guzzlehttp/guzzle, kevinrob/guzzle-cache-middleware and league/flysystem.
-- I tried a lot of other options to cache, even play with basic curl options, but none of them gives an easy indicator that it is really caching.
-- Using kevinrob/guzzle-cache-middleware, it will create files inside "inpsyde-exam/tmp" folder
-- Since we are just using GET, 60 TTL seems to be a good tradeoff in general but still depends on many factors.
+- Passed "Cache-Control" => "max-age=60" to wp_safe_remote_get(), but I can't seem to find a way to test it, will research it in my free time.
 
 # Other Composer Packages
 - PHP Unit(phpunit/phpunit) For Unit and integration testing
 - Inpsyde PHP Coding Standards (inpsyde/php-coding-standards) for testing coding convention
+- BrainMonkey by Mr. Giuseppe
 
 # Non-obvious Implementation Choices
 - I used basic php page routing for custom endpoint.
