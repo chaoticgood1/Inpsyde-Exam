@@ -7,7 +7,7 @@
 
 require AUTOLOAD_PHP;
 
-use InpsydeExam\Source\Model\Users;
+use Inpsyde\Model\Users;
 ?>
 
 <?php get_header(); ?>

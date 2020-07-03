@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace InpsydeExam\Source\Model;
+namespace Inpsyde\Model;
 
 use Exception;
 
 /**
  * Model for the users data, to be instantiated in the UserPage.php
  *
- * @package  InpsydeExam\Source\Model
+ * @package  Inpsyde\Model
  * @author   Monico Colete <colete_nico@yahoo.com>
  * @license  https://opensource.org/licenses/MIT MIT License
  */
@@ -43,7 +43,7 @@ class Users
      */
     private function get(string $url): array
     {
-        $args = array("headers" => array("Cache-Control" => "max-age=60"));
+        $args = ["headers" => ["Cache-Control" => "max-age=60"]];
         $request = wp_safe_remote_get($url, $args);
         if (is_wp_error($request)) {
             return [

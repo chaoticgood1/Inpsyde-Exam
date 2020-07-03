@@ -5,7 +5,7 @@ require dirname(__FILE__, 2) . "/vendor/autoload.php";
 use Brain\Monkey;
 use Brain\Monkey\Functions;
 
-use InpsydeExam\Source\Model\Users;
+use Inpsyde\Model\Users;
 
 class MyTestCase extends PHPUnit_Framework_TestCase
 {

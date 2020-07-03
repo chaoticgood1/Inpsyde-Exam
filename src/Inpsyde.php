@@ -1,19 +1,5 @@
 <?php declare(strict_types=1);
-namespace InpsydeExam;
-
-/**
- * Plugin Name: Inpsyde Exam
- * Description: Ways to test skills for qualification
- * Author: Monico Colete
- * Version: 1.0
- * PHP Version 7.2
- *
- * @category  InpsydeExam
- * @package   InpsydeExam
- * @author    Monico Colete <colete_nico@yahoo.com>
- * @license   https://opensource.org/licenses/MIT MIT License
- * @link      http://homeurl/users
- */
+namespace Inpsyde;
 
 /**
  * Manages how the files required to run /users path
@@ -26,10 +12,6 @@ namespace InpsydeExam;
  */
 class Inpsyde
 {
-    public function __construct()
-    {
-        add_action('plugins_loaded', [ $this, 'pluginLoaded' ]);
-    }
 
     /**
      * Adds the necessary filters and adds the users.js
@@ -38,7 +20,7 @@ class Inpsyde
      *
      * @return void
      */
-    public function pluginLoaded(): void
+    public function init()
     {
         add_filter('template_include', [ $this, 'includeTemplate' ]);
         $this->addUsersScript();
@@ -54,7 +36,6 @@ class Inpsyde
     {
         if (isset($_SERVER['REQUEST_URI'])) {
             $request = esc_url_raw($_SERVER['REQUEST_URI']);
-            error_log($request);
             if ($request === "/users") {
                 return INPSYDE_PATH . '/src/page/UserPage.php';
             }
@@ -75,14 +56,11 @@ class Inpsyde
         add_action('wp_enqueue_scripts', function () {
             wp_enqueue_script(
                 'users.js',
-                plugins_url('/js/users.js', __FILE__),
+                plugins_url('../js/users.js', __FILE__),
                 ['jquery'],
                 0.1,
                 false
             );
         });
     }
-    
 }
-
-$inpsyde = new Inpsyde();
