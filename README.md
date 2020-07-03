@@ -61,6 +61,10 @@ RewriteRule . /index.php [L]
 - On Google Chrome sometimes won't load the page when typing shortcut URL in address bar (Ex: localhost/users).
 - But typing the whole URL is fine (http://localhost/users), though in console it shows 404 for /users.
 - CORS issues which happens every now and then, probably the server in jsonplaceholder sets randomly? The plugin handles it well.
+- If in case there is a missing package error which didn't executed the dumpautoload automatically, manually run:
+```
+$ composer dumpautoload -o
+```
 
 # Known Issues in Coding Convention
 
