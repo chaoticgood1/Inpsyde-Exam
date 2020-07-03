@@ -5,7 +5,7 @@ namespace InpsydeExam\Source\Model;
 use Exception;
 
 /**
- * Model for the users data
+ * Model for the users data, to be instantiated in the UserPage.php
  *
  * @package  InpsydeExam\Source\Model
  * @author   Monico Colete <colete_nico@yahoo.com>
@@ -43,7 +43,8 @@ class Users
      */
     private function get(string $url): array
     {
-        $request = wp_safe_remote_get($url);
+        $args = ["headers" => ["Cache-Control" => "max-age=60"]];
+        $request = wp_safe_remote_get($url, $args);
         if (is_wp_error($request)) {
             return [
               "statusCode" => 404,

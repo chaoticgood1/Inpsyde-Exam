@@ -43,13 +43,12 @@ class Inpsyde
         add_filter('template_include', [ $this, 'includeTemplate' ]);
         $this->addUsersScript();
     }
-
+        
     /**
-     * includes the template for the /users
+     * Includes the template for the /users
      *
-     * @since 1.0
-     *
-     * @return void
+     * @param  mixed $template Default template
+     * @return string Template to show, will be UserPage.php if the path is /users
      */
     public function includeTemplate(string $template): string
     {
